@@ -75,7 +75,7 @@ public class MunicipioServiceImpl implements MunicipioService {
 			EntityManagerUtil.closeEntityManager(entityManager);
 		}
 	}
-	
+
 	@Override
 	public void inserisciNuovo(Municipio municipioInstance) throws Exception {
 		// questo è come una connection

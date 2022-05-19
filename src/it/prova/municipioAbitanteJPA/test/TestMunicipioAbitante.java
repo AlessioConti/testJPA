@@ -20,32 +20,34 @@ public class TestMunicipioAbitante {
 
 		try {
 			/*
-			// ora con il service posso fare tutte le invocazioni che mi servono
-			System.out.println(
-					"In tabella Municipio ci sono " + municipioService.listAllMunicipi().size() + " elementi.");
-
-			testInserisciMunicipio(municipioService);
-			System.out.println(
-					"In tabella Municipio ci sono " + municipioService.listAllMunicipi().size() + " elementi.");
-
-			testInserisciAbitante(municipioService, abitanteService);
-			System.out.println(
-					"In tabella Municipio ci sono " + municipioService.listAllMunicipi().size() + " elementi.");
-
-			testRimozioneAbitante(municipioService, abitanteService);
-			System.out.println(
-					"In tabella Municipio ci sono " + municipioService.listAllMunicipi().size() + " elementi.");
-
-			testCercaTuttiGliAbitantiConNome(municipioService, abitanteService);
-			System.out.println(
-					"In tabella Municipio ci sono " + municipioService.listAllMunicipi().size() + " elementi.");
-
-			testLazyInitExc(municipioService, abitanteService);
-			
-			testCercaTuttiGliAbitantiConCognome(municipioService, abitanteService);
-			*/
-			testCercaTuttiGliAbitantiConCodiceMunicipioIniziaCon(municipioService, abitanteService);
-			
+			 * // ora con il service posso fare tutte le invocazioni che mi servono
+			 * System.out.println( "In tabella Municipio ci sono " +
+			 * municipioService.listAllMunicipi().size() + " elementi.");
+			 * 
+			 * testInserisciMunicipio(municipioService); System.out.println(
+			 * "In tabella Municipio ci sono " + municipioService.listAllMunicipi().size() +
+			 * " elementi.");
+			 * 
+			 * testInserisciAbitante(municipioService, abitanteService); System.out.println(
+			 * "In tabella Municipio ci sono " + municipioService.listAllMunicipi().size() +
+			 * " elementi.");
+			 * 
+			 * testRimozioneAbitante(municipioService, abitanteService); System.out.println(
+			 * "In tabella Municipio ci sono " + municipioService.listAllMunicipi().size() +
+			 * " elementi.");
+			 * 
+			 * testCercaTuttiGliAbitantiConNome(municipioService, abitanteService);
+			 * System.out.println( "In tabella Municipio ci sono " +
+			 * municipioService.listAllMunicipi().size() + " elementi.");
+			 * 
+			 * testLazyInitExc(municipioService, abitanteService);
+			 * 
+			 * testCercaTuttiGliAbitantiConCognome(municipioService, abitanteService);
+			 * 
+			 * testCercaTuttiGliAbitantiConCodiceMunicipioIniziaCon(municipioService,
+			 * abitanteService);
+			 */
+			testCercaTuttiIMunicipiConMinorenni(municipioService, abitanteService);
 
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -182,45 +184,56 @@ public class TestMunicipioAbitante {
 		// municipioService.caricaSingoloMunicipioConAbitanti(...);
 		System.out.println(".......testLazyInitExc fine: PASSED.............");
 	}
-	
-	private static void testCercaTuttiGliAbitantiConCognome(MunicipioService municipioService, AbitanteService abitanteService) throws Exception{
+
+	private static void testCercaTuttiGliAbitantiConCognome(MunicipioService municipioService,
+			AbitanteService abitanteService) throws Exception {
 		System.out.println("testCercaTuttiGliAbitantiConCognome inizializzato.....");
-		
+
 		List<Municipio> listaMunicipiPresenti = municipioService.listAllMunicipi();
 		if (listaMunicipiPresenti.isEmpty())
-			throw new RuntimeException("testCercaTuttiGliAbitantiConCognome fallito: non ci sono municipi a cui collegarci ");
-		
+			throw new RuntimeException(
+					"testCercaTuttiGliAbitantiConCognome fallito: non ci sono municipi a cui collegarci ");
+
 		Abitante nuovoAbitante = new Abitante("Alessio", "Conti", 27, "Via Lucca");
 		Abitante nuovoAbitante2 = new Abitante("Giulia", "Conti", 37, "Via Roma");
 
 		nuovoAbitante.setMunicipio(listaMunicipiPresenti.get(0));
 		nuovoAbitante2.setMunicipio(listaMunicipiPresenti.get(0));
-		
+
 		abitanteService.inserisciNuovo(nuovoAbitante);
 		abitanteService.inserisciNuovo(nuovoAbitante2);
-		
+
 		if (abitanteService.cercaTuttiGliAbitantiConCognome("Conti").size() != 2)
 			throw new RuntimeException("testCercaTuttiGliAbitantiConNome fallito: numero record inatteso ");
-		
+
 		System.out.println("testCercaTuttiGliAbitantiConCognome concluso......");
-		}
-	
-	private static void testCercaTuttiGliAbitantiConCodiceMunicipioIniziaCon(MunicipioService municipioService, AbitanteService abitanteService) throws Exception{
+	}
+
+	private static void testCercaTuttiGliAbitantiConCodiceMunicipioIniziaCon(MunicipioService municipioService,
+			AbitanteService abitanteService) throws Exception {
 		System.out.println("cercaTuttiGliAbitantiConCodiceMunicipioIniziaCon inizializzato....");
-		
+
 		List<Municipio> listaMunicipiPresenti = municipioService.listAllMunicipi();
 		if (listaMunicipiPresenti.isEmpty())
-			throw new RuntimeException("cercaTuttiGliAbitantiConCodiceMunicipioIniziaCon fallito: non ci sono municipi a cui collegarci ");
-		
+			throw new RuntimeException(
+					"cercaTuttiGliAbitantiConCodiceMunicipioIniziaCon fallito: non ci sono municipi a cui collegarci ");
+
 		System.out.println(abitanteService.cercaTuttiGliAbitantiConCodiceMunicipioIniziaCon("I"));
 		System.out.println("cercaTuttiGliAbitantiConCodiceMunicipioIniziaCon concluso.......");
 	}
-	
-	private static void testCercaTuttiIMunicipiConMinorenni(MunicipioService municipioService, AbitanteService abitanteService) throws Exception{
+
+	private static void testCercaTuttiIMunicipiConMinorenni(MunicipioService municipioService,
+			AbitanteService abitanteService) throws Exception {
 		System.out.println("testCercaTuttiIMunicipiConMinorenni inizializzato......");
-		
+
 		Municipio nuovoMunicipio = new Municipio("Municipio IV", "IV", "Via dei Giganti");
 		Municipio nuovoMunicipio2 = new Municipio("Municipio V", "V", "Via del Vuoto");
+
+		municipioService.inserisciNuovo(nuovoMunicipio);
+		municipioService.inserisciNuovo(nuovoMunicipio2);
+
+		System.out.println(municipioService.cercaTuttiIMunicipiConMinorenni());
+		System.out.println("testCercaTuttiIMunicipiConMinorenni concluso.......");
 	}
 
 }

@@ -60,14 +60,16 @@ public class AbitanteDAOImpl implements AbitanteDAO {
 
 	@Override
 	public List<Abitante> findAllByCognome(String cognome) throws Exception {
-		TypedQuery<Abitante> query = entityManager.createQuery("from Abitante a where a.cognome like ?1", Abitante.class);
+		TypedQuery<Abitante> query = entityManager.createQuery("from Abitante a where a.cognome like ?1",
+				Abitante.class);
 		return query.setParameter(1, cognome).getResultList();
 	}
 
 	@Override
 	public List<Abitante> findAllByCodiceMunicipioIniziaCon(String codice) throws Exception {
-		TypedQuery<Abitante> query = entityManager.createQuery("from Abitante a where a.municipio.codice like ?1", Abitante.class);
-		return query.setParameter(1, codice+ "%").getResultList();
+		TypedQuery<Abitante> query = entityManager.createQuery("from Abitante a where a.municipio.codice like ?1",
+				Abitante.class);
+		return query.setParameter(1, codice + "%").getResultList();
 	}
 
 }

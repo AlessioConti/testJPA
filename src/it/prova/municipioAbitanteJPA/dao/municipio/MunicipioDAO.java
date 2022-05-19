@@ -6,7 +6,7 @@ import it.prova.municipioAbitanteJPA.dao.IBaseDAO;
 import it.prova.municipioAbitanteJPA.model.Municipio;
 
 public interface MunicipioDAO extends IBaseDAO<Municipio> {
-	
+
 	public Municipio getEagerAbitanti(Long id) throws Exception;
 
 	public List<Municipio> findAllByAbitantiMinorenni() throws Exception;

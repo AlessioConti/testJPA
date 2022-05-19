@@ -6,11 +6,11 @@ import it.prova.municipioAbitanteJPA.dao.municipio.MunicipioDAO;
 import it.prova.municipioAbitanteJPA.model.Municipio;
 
 public interface MunicipioService {
-	
+
 	public List<Municipio> listAllMunicipi() throws Exception;
 
 	public Municipio caricaSingoloMunicipio(Long id) throws Exception;
-	
+
 	public Municipio caricaSingoloMunicipioConAbitanti(Long id) throws Exception;
 
 	public void aggiorna(Municipio municipioInstance) throws Exception;
@@ -21,6 +21,6 @@ public interface MunicipioService {
 
 	public List<Municipio> cercaTuttiIMunicipiConMinorenni() throws Exception;
 
-	//per injection
+	// per injection
 	public void setMunicipioDAO(MunicipioDAO municipioDAO);
 }
