@@ -46,8 +46,10 @@ public class TestMunicipioAbitante {
 			 * 
 			 * testCercaTuttiGliAbitantiConCodiceMunicipioIniziaCon(municipioService,
 			 * abitanteService);
-			 */
+			 
 			testCercaTuttiIMunicipiConMinorenni(municipioService, abitanteService);
+			*/
+			testCercaTuttiIMunicipiPerDescrizioneCheIniziaCon(municipioService, abitanteService);
 
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -234,6 +236,14 @@ public class TestMunicipioAbitante {
 
 		System.out.println(municipioService.cercaTuttiIMunicipiConMinorenni());
 		System.out.println("testCercaTuttiIMunicipiConMinorenni concluso.......");
+	}
+	
+	private static void testCercaTuttiIMunicipiPerDescrizioneCheIniziaCon(MunicipioService municipioService,
+			AbitanteService abitanteService) throws Exception {
+		System.out.println("testCercaTuttiIMunicipiPerDescrizioneCheIniziaCon inizializzato.......");
+		
+		System.out.println(municipioService.cercaTuttiIMunicipiPerDescrizioneCheIniziaCon("M"));
+		System.out.println("testCercaTuttiIMunicipiPerDescrizioneCheIniziaCon concluso.....");
 	}
 
 }

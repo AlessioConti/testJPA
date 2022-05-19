@@ -171,5 +171,20 @@ public class MunicipioServiceImpl implements MunicipioService {
 			EntityManagerUtil.closeEntityManager(entityManager);
 		}
 	}
+	
+	public List<Municipio> cercaTuttiIMunicipiPerDescrizioneCheIniziaCon(String iniziale) throws Exception{
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+		
+		try {
+			municipioDAO.setEntityManager(entityManager);
+			
+			return municipioDAO.findAllByDescrizioneIniziaCon(iniziale);
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
 
 }

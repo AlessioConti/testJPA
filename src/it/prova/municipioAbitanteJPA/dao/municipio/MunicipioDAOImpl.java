@@ -76,8 +76,8 @@ public class MunicipioDAOImpl implements MunicipioDAO {
 
 	@Override
 	public List<Municipio> findAllByDescrizioneIniziaCon(String iniziale) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Municipio> query = entityManager.createQuery("from Municipio m where m.descrizione like ?1", Municipio.class);
+		return query.setParameter(1, iniziale + "%").getResultList();
 	}
 
 }
